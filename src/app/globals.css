@@ -12,6 +12,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@layer components{
+  .nav-hover{
+    @apply hover:text-gray-700 hover:underline;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
