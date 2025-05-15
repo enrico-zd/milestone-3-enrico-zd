@@ -28,3 +28,12 @@ export interface IError {
     name?: string;
     code?: number;
 }
+
+export interface IFAQ {
+    question: string;
+    answer: string;
+}
+
+export interface IFAQProps {
+    faqs: IFAQ[];
+}

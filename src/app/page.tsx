@@ -1,4 +1,4 @@
-import Product from "./product/page";
+import Product from "./components/Product";
 import Navigation from "./components/Navigation";
 
 export default function Home() {

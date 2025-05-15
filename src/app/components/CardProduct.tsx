@@ -26,7 +26,9 @@ const CardProduct = ({images, title, slug, category, price}: ICardProductProps):
                 </div>
             )}
             <Image src={images} width={300} height={300} alt={slug}/>
-            <h1 className="mx-5 mt-4 h-12">{title}</h1>
+            <div className="flex flex-col-reverse h-12 mx-5 mt-4">
+                <h1 className="line-clamp-2 text-base">{title}</h1>
+            </div>
             <p className="mx-5 mt-2 text-gray-500">Category: {category}</p>
             <p className="mx-5 mt-2 font-semibold">${price}</p>
         </div>
