@@ -48,10 +48,10 @@ export default function Product() {
         )}
         
         {/* render card product */}
-        <div className='grid grid-cols-5 gap-y-10 place-items-center mx-auto my-6'>
+        <div className='grid grid-cols-4 gap-y-10 place-items-center mx-auto my-6'>
         {/* Show loading indicator while fetching */}
         {isLoading && (
-            [...Array(10)].map((_, index) => (
+            [...Array(8)].map((_, index) => (
             <div key={index} className="h-[480px] w-[300px] rounded-md border border-gray-300">
             <div className="flex flex-col animate-pulse space-x-4 overflow-hidden">
                 <div className="size-[300px] bg-gray-200"></div>
