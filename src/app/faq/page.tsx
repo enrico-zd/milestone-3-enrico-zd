@@ -1,4 +1,3 @@
-import Navigation from "../components/Navigation";
 import Image from "next/image";
 import FAQPage from "../components/FAQPage";
 import { fetchFQA } from "@/utils/FAQApi";
@@ -14,8 +13,6 @@ export default async function FAQ() {
 
   return (
     <div>
-        <Navigation />
-
         <div className={`h-[400px] gap-40 flex flex-row w-full justify-center items-center ${openSans.className}`}>
             <div className="w-[440px]">
               <h1 className="font-bold text-4xl">FAQs</h1>

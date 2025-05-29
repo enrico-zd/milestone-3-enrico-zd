@@ -1,14 +1,13 @@
 import Product from "./components/Product";
-import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage";
 
 export default function Home() {
   return (
     <div>
-      {/* navbar */}
-      <Navigation />
-
       {/* product */}
       <Product />
+
+      <HomePage />
     </div>
   );
 }

@@ -22,3 +22,4 @@ export const fetchProductBySlug = async (slug: string): Promise<IProducts> => {
     return response.json();
 }
 
+

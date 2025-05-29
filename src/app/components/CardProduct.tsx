@@ -1,8 +1,6 @@
 'use client';
 
-import Image from "next/image";
 import { ICardProductProps } from "@/types";
-import { openSans } from "../fonts";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -16,7 +14,7 @@ const CardProduct = ({images, title, slug, category, price}: ICardProductProps):
     }
 
     return (
-        <div onClick={handleClick} className={`h-[480px] w-[300px] shadow-lg rounded-md overflow-hidden relative cursor-pointer ${openSans.className}`}>
+        <div onClick={handleClick} className="h-[480px] w-[300px] shadow-lg rounded-md overflow-hidden relative cursor-pointer">
             {isLoading && (
                 <div className="absolute inset-0 bg-black opacity-50">
                     <svg aria-hidden="true" className="absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] w-32 h-32 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +23,7 @@ const CardProduct = ({images, title, slug, category, price}: ICardProductProps):
                     </svg>
                 </div>
             )}
-            <Image src={images} width={300} height={300} alt={slug}/>
+            <img src={images} alt={slug} className="w-[300px] h-[300px]"/>
             <div className="flex flex-col-reverse h-12 mx-5 mt-4">
                 <h1 className="line-clamp-2 text-base">{title}</h1>
             </div>

@@ -36,7 +36,7 @@ export default function Product() {
   }, []);
 
   return (
-    <main>
+    <main className="py-20">
     <section>
         {/* Show Error message if fail to fetching */}
         {error && (
@@ -69,6 +69,8 @@ export default function Product() {
         {!isLoading && dataProducts.length > 0 && (
             dataProducts.filter((product) => 
             !product.images[0].includes("https://placehold.co/600x400") &&
+            !product.images[0].includes("image-updated.jpg") &&
+            !product.images[0].includes("https://picsum.photos/id/237/200/300") &&
             !product.title.includes("new string")).map((product: IProducts, index: number) => (
             <CardProduct
                 key={`${product.id}-${index}`}
