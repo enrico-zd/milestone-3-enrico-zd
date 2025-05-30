@@ -26,23 +26,24 @@ export default function Navigation() {
                         {/* FAQ page */}
                         <Link className="nav-hover" href="/faq">FAQ</Link>
 
-                        {/* cart page */}
-                        <Link 
-                        href="/cart" 
-                        className="flex flex-row items-center relative"
-                        >
-                            Cart <FontAwesomeIcon icon={faCartShopping} width={20}/>
-                            {totalItems > 0 && (
-                                <span
-                                className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-green-600 dark:bg-green-500 rounded-full"
-                                >
-                                {totalItems}
-                                </span>
-                            )}
-                        </Link>
-
                         {session ? (
                             <>
+                                {/* cart page */}
+                                <Link 
+                                href="/cart" 
+                                className="flex flex-row items-center relative"
+                                >
+                                    Cart <FontAwesomeIcon icon={faCartShopping} width={20}/>
+                                    {totalItems > 0 && (
+                                        <span
+                                        className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-green-600 dark:bg-green-500 rounded-full"
+                                        >
+                                        {totalItems}
+                                        </span>
+                                    )}
+                                </Link>
+
+                                {/* Profile or Dashboard link */}
                                 <Link
                                 href={session?.user?.role === "admin" ? "/dashboard" : "/profile"}
                                 className="overflow-hidden rounded-full w-10 h-10 ring-1 ring-gray-300"
