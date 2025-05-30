@@ -14,7 +14,7 @@ export function middleware(request: NextRequest){
     const isAuthenticated = Boolean(authToken || sessionToken);
 
     // Define public paths that don't require authentication
-    const publicPaths = ["/login",  "/about", "/faq", "/api/auth/error", "/product/[slug]"];
+    const publicPaths = ["/login", "/about", "/faq", "/api/auth/error", "/product/[slug]"];
     const isPublicPath = publicPaths.includes(path) || path.startsWith("/product") || path.startsWith("/api/auth") || path === "/";
 
     // Check if user is trying to access a protected router without authentication
@@ -31,7 +31,7 @@ export function middleware(request: NextRequest){
     if (
         isPublicPath &&
         isAuthenticated &&
-        (path === "/login" || path === "/register")
+        path === "/login"
     ) {
         return NextResponse.redirect(new URL("/dashboard", request.url))
     }
