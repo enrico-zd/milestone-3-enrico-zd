@@ -8,13 +8,13 @@ export function middleware(request: NextRequest){
 
     // check authentication from authToken and next-auth.sesssion-token
     const authToken = request.cookies.get("authToken")?.value;
-    const sessionToken = request.cookies.get("next-auth.session-token")?.value;
+    const sessionToken = request.cookies.get("__Secure-next-auth.session-token")?.value || request.cookies.get("next-auth.session-token")?.value;
 
     // User is authenticated if either token exists
     const isAuthenticated = Boolean(authToken || sessionToken);
 
     // Define public paths that don't require authentication
-    const publicPaths = ["/login", "/about", "/faq", "/api/auth/error", "/product/[slug]"];
+    const publicPaths = ["/login", "/about", "/faq", "/api/auth/error"];
     const isPublicPath = publicPaths.includes(path) || path.startsWith("/product") || path.startsWith("/api/auth") || path === "/";
 
     // Check if user is trying to access a protected router without authentication
@@ -41,12 +41,12 @@ export function middleware(request: NextRequest){
         `Access granted to ${path}, auth status: ${
           isAuthenticated ? "authenticated" : "public route"
         }`
-      );
+    );
 
-      // Continue with the request if the route is public or user is authenticated
-      return NextResponse.next();
+    // Continue with the request if the route is public or user is authenticated
+    return NextResponse.next();
 }
 
 export const config = {
-    matcher: "/((?!_next/static|_next/image|favicon.ico).*)",
+    matcher: ["/((?!_next/static|_next/image|favicon.ico).*)", "/cart/:path*", "/dashboard/:path*", "/profile/:path*"],
 }

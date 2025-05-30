@@ -87,5 +87,5 @@ export const authOptions: NextAuthOptions = {
         strategy: "jwt",
     },
     secret:
-        process.env.NEXTAUTH_SECRET || "my-super-secret-key-that-should-be-in-env",
+        process.env.NEXTAUTH_SECRET || "your-secret-key-for-jwt-encryption",
 };
