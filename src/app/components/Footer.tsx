@@ -59,25 +59,25 @@ export default function Footer() {
                         src={"/linkedin.png"}
                         width={23}
                         height={20}
-                        alt="LinkedIn"
+                        alt="linkedin"
                     />
                     <Image 
                         src={"/instagram.png"}
                         width={23}
                         height={20}
-                        alt="LinkedIn"
+                        alt="instagram"
                     />
                     <Image 
                         src={"/github.png"}
                         width={23}
                         height={20}
-                        alt="LinkedIn"
+                        alt="github"
                     />
                     <Image 
                         src={"/bluesky.png"}
                         width={23}
                         height={20}
-                        alt="LinkedIn"
+                        alt="bluesky"
                     />
                 </div>
             </div>

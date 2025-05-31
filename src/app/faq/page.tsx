@@ -19,9 +19,8 @@ export default async function FAQ() {
               <p className="text-xl mt-2">Have questions? Here you will find the answers most valued by our customers, along with access to step-by-step instructions and support.</p>
             </div>
             <div>
-              {/* <img src="/faq.webp" alt="FAQ" className="w-[470px] h-[294px]"/> */}
               <Image 
-              src={"/faq.webp"}
+              src="/faq.webp"
               width={470}
               height={294}
               alt="FAQ"
