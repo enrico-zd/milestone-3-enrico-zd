@@ -56,25 +56,25 @@ export default function Footer() {
                 <p>&copy; 2025 - RevoShop. All Rights Reserved</p>
                 <div className="flex flex-row gap-2">
                     <Image 
-                        src="/linkedin.png"
+                        src={"/linkedin.png"}
                         width={23}
                         height={20}
                         alt="LinkedIn"
                     />
                     <Image 
-                        src="/instagram.png"
+                        src={"/instagram.png"}
                         width={23}
                         height={20}
                         alt="LinkedIn"
                     />
                     <Image 
-                        src="/github.png"
+                        src={"/github.png"}
                         width={23}
                         height={20}
                         alt="LinkedIn"
                     />
                     <Image 
-                        src="/bluesky.png"
+                        src={"/bluesky.png"}
                         width={23}
                         height={20}
                         alt="LinkedIn"
