@@ -21,7 +21,7 @@ export default async function FAQ() {
             <div>
               {/* <img src="/faq.webp" alt="FAQ" className="w-[470px] h-[294px]"/> */}
               <Image 
-              src="/faq.webp"
+              src={"/faq.webp"}
               width={470}
               height={294}
               alt="FAQ"
