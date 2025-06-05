@@ -6,7 +6,7 @@ export const fetchUser = async (): Promise<IUser[]> => {
     const response = await fetch(API_URL);
     
     if(!response.ok){
-        throw new Error('Failed to fetch user product');
+        throw new Error('Failed to fetch user data');
     }
 
     return response.json();

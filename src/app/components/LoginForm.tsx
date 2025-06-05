@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
@@ -35,7 +36,7 @@ export default function LoginForm() {
         e.preventDefault();
         setIsLoading(true);
         setError("");
-        setSuccess("Login Berhasil");
+        setSuccess("");
 
         try {
             const result = await signIn("credentials", {

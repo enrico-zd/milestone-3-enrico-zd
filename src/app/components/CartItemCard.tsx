@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { CartItem, useCart } from "@/contexts/CartContext";
 
 type CartItemCardProps = {

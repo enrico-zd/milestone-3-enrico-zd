@@ -3,7 +3,7 @@
 import { useCart } from "@/contexts/CartContext";
 import { IProducts } from "@/types";
 import { useSession } from "next-auth/react";
-
+import React from "react";
 
 export default function AddToCartButton(product: IProducts) {
     const { addToCart } = useCart();

@@ -1,6 +1,7 @@
 // CardProduct.test.tsx
+import React from "react";
 import { fireEvent, render, screen } from '@testing-library/react';
-import CardProduct from './CardProduct';
+import CardProduct from '@/app/components/CardProduct';
 import * as nextNavigation from 'next/navigation';
 
 jest.mock('next/navigation', () => ({

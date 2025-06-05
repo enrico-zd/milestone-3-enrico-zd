@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react";
 import CardProduct from "@/app/components/CardProduct";
 import { IError, IProducts } from "@/types";
 
