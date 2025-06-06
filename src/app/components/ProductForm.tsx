@@ -1,7 +1,9 @@
 "use client";
 
+import React from "react";
 import { useState, useEffect } from "react";
-import { IProductPostProps } from "@/types";
+import { ICategory, IProductPostProps } from "@/types";
+import { fetchCategory } from "@/utils/CategoryApi";
 
 interface ProductFormProps {
   product?: IProductPostProps;
@@ -24,12 +26,23 @@ export default function ProductForm({
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [category, setCategory] = useState<ICategory[]>([]);
 
   useEffect(() => {
     if (product) {
       setFormData(product);
     }
   }, [product]);
+
+  // Fetch categories when the component mounts
+  const dataCategory = async (): Promise<void> => {
+    const data = await fetchCategory();
+    setCategory(data);
+  }
+
+  useEffect(() => {
+    dataCategory();
+  }, []);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -60,7 +73,6 @@ export default function ProductForm({
     >
   ) => {
     const { name, value } = e.target;
-    console.log(e.target);
 
     // Clear error when field is edited
     if (errors[name]) {
@@ -116,7 +128,7 @@ export default function ProductForm({
       <div>
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-gray-300"
+          className="block text-sm font-medium text-gray-800"
         >
           Title <span className="text-red-500">*</span>
         </label>
@@ -127,9 +139,9 @@ export default function ProductForm({
           value={formData.title || ""}
           onChange={handleChange}
           required
-          className={`mt-1 block w-full bg-gray-900 border ${
+          className={`mt-1 block w-full bg-gray-100 border ${
             errors.title ? "border-red-500" : "border-gray-700"
-          } rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+          } rounded-md shadow-sm py-2 px-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
           placeholder="Product title"
         />
         {errors.title && (
@@ -140,13 +152,13 @@ export default function ProductForm({
       <div>
         <label
           htmlFor="price"
-          className="block text-sm font-medium text-gray-300"
+          className="block text-sm font-medium text-gray-800"
         >
           Price <span className="text-red-500">*</span>
         </label>
         <div className="mt-1 relative rounded-md shadow-sm">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <span className="text-gray-400 sm:text-sm">$</span>
+            <span className="text-gray-800 sm:text-sm">$</span>
           </div>
           <input
             type="number"
@@ -157,9 +169,9 @@ export default function ProductForm({
             required
             min="0"
             step="0.01"
-            className={`block w-full pl-7 bg-gray-900 border ${
+            className={`block w-full pl-7 bg-gray-100 border ${
               errors.price ? "border-red-500" : "border-gray-700"
-            } rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+            } rounded-md shadow-sm py-2 px-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
             placeholder="0.00"
           />
         </div>
@@ -171,7 +183,7 @@ export default function ProductForm({
       <div>
         <label
           htmlFor="description"
-          className="block text-sm font-medium text-gray-300"
+          className="block text-sm font-medium text-gray-800"
         >
           Description <span className="text-red-500">*</span>
         </label>
@@ -182,9 +194,9 @@ export default function ProductForm({
           onChange={handleChange}
           required
           rows={3}
-          className={`mt-1 block w-full bg-gray-900 border ${
+          className={`mt-1 block w-full bg-gray-100 border ${
             errors.description ? "border-red-500" : "border-gray-700"
-          } rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+          } rounded-md shadow-sm py-2 px-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
           placeholder="Product description"
         />
         {errors.description && (
@@ -195,7 +207,7 @@ export default function ProductForm({
       <div>
         <label
           htmlFor="imageUrl"
-          className="block text-sm font-medium text-gray-300"
+          className="block text-sm font-medium text-gray-800"
         >
           Image URL
         </label>
@@ -206,7 +218,7 @@ export default function ProductForm({
             id="imageUrl"
             value={formData.images?.[0] || ""}
             onChange={handleChange}
-            className="block w-full bg-gray-900 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="block w-full bg-gray-100 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             placeholder="https://example.com/image.jpg"
           />
         </div>
@@ -223,54 +235,34 @@ export default function ProductForm({
                 }}
               />
             </div>
-            <span className="text-sm text-gray-400">Preview</span>
+            <span className="text-sm text-gray-800">Preview</span>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="categoryId"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Category ID
-          </label>
-          <input
-            type="number"
-            name="categoryId"
-            id="categoryId"
-            value={formData.categoryId || 1}
-            onChange={handleChange}
-            required
-            min="1"
-            className="mt-1 block w-full bg-gray-900 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="categoryName"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Category Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="categoryName"
-            id="categoryName"
-            value={formData.categoryId || ""}
-            onChange={handleChange}
-            required
-            className={`mt-1 block w-full bg-gray-900 border ${
-              errors.categoryName ? "border-red-500" : "border-gray-700"
-            } rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-            placeholder="Category name"
-          />
-          {errors.categoryName && (
-            <p className="mt-1 text-sm text-red-500">{errors.categoryName}</p>
-          )}
-        </div>
+      <div className="w-80">
+        <label
+          htmlFor="categoryId"
+          className="block text-sm font-medium text-gray-800"
+        >
+          Category
+        </label>
+        <select 
+          name="categoryId" 
+          id="categoryId"
+          value={formData.categoryId}
+          onChange={handleChange}
+          className="mt-1 block w-full bg-gray-100 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          required
+        >
+          {
+            category?.map((categoryItem) => (
+              <option key={categoryItem.id} value={categoryItem.id}>
+                {categoryItem.name}
+              </option>
+            ))
+          }
+        </select>
       </div>
 
       <div className="flex justify-end space-x-3 pt-4 border-t border-gray-700">
@@ -278,14 +270,15 @@ export default function ProductForm({
           type="button"
           onClick={onCancel}
           disabled={isSubmitting}
-          className="bg-gray-700 py-2 px-4 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-200 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-gray-100 py-2 px-4 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-blue-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+          className="bg-gray-800 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+          aria-label="Submit Product Form"
         >
           {isSubmitting ? (
             <>

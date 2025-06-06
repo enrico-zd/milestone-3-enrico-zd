@@ -139,11 +139,11 @@ export default function DashboardProductsPage() {
 
   return (
     <div>
-      <div className="flex flex-row justify-between items-center mb-1">
+      <div className="flex flex-row justify-between items-center mb-2">
         <h1 className="text-2xl font-semibold">Product Management</h1>
         <button
         onClick={handleCreateProduct}
-        className="text-white bg-blue-500 p-2 rounded-md"
+        className="text-white bg-gray-700 p-2 rounded-md"
         >
           Add Product
         </button>
@@ -177,12 +177,12 @@ export default function DashboardProductsPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search products..."
-              className="flex-1 bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 pl-10 pr-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm w-full"
+              className="flex-1 bg-gray-100 border border-gray-300 rounded-md shadow-sm py-2 pl-10 pr-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 sm:text-sm w-full"
             />
           </div>
           <button
             type="submit"
-            className="bg-gray-700 px-4 py-2 text-gray-200 rounded-md hover:bg-gray-600 transition-colors"
+            className="bg-gray-700 px-4 py-2 text-white rounded-md hover:bg-gray-600 transition-colors"
           >
             Search
           </button>
@@ -206,10 +206,10 @@ export default function DashboardProductsPage() {
           <p className="mt-4 text-gray-300">Loading products...</p>
         </div>
       ) : products.length === 0 ? (
-        <div className="text-center py-20 bg-gray-800 rounded-lg border border-gray-700">
+        <div className="text-center py-20 bg-gray-200 rounded-lg border border-gray-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-16 w-16 mx-auto text-gray-400"
+            className="h-16 w-16 mx-auto text-gray-800"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -221,13 +221,13 @@ export default function DashboardProductsPage() {
               d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
             />
           </svg>
-          <p className="mt-4 text-gray-300 text-lg">No products found</p>
-          <p className="text-gray-400 mt-2">
+          <p className="mt-4 text-gray-600 text-lg">No products found</p>
+          <p className="text-gray-900 mt-2">
             Try adjusting your search or add a new product
           </p>
         </div>
       ) : (
-        <div className="bg-gray-800 shadow overflow-hidden sm:rounded-lg border border-gray-700">
+        <div className="bg-gray-200 shadow overflow-hidden sm:rounded-lg border border-gray-600">
           <ProductTable
             products={products}
             onEdit={handleEditProduct}
@@ -235,7 +235,7 @@ export default function DashboardProductsPage() {
           />
 
           {/* Pagination */}
-          <div className="bg-gray-800 px-4 py-3 flex items-center justify-between border-t border-gray-700 sm:px-6">
+          <div className="bg-gray-200 px-4 py-3 flex items-center justify-between border-t border-gray-600 sm:px-6">
             <div className="flex-1 flex justify-between sm:hidden">
               <button
                 onClick={() =>
@@ -244,8 +244,8 @@ export default function DashboardProductsPage() {
                 disabled={currentPage === 1}
                 className={`relative inline-flex items-center px-4 py-2 border rounded-md ${
                   currentPage === 1
-                    ? "bg-gray-700 text-gray-400 cursor-not-allowed border-gray-600"
-                    : "bg-gray-700 text-gray-200 hover:bg-gray-600 border-gray-600"
+                    ? "bg-gray-200 text-gray-800 cursor-not-allowed border-gray-600"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-600 border-gray-600"
                 } transition-colors`}
               >
                 Previous
@@ -257,8 +257,8 @@ export default function DashboardProductsPage() {
                 disabled={currentPage === totalPages}
                 className={`ml-3 relative inline-flex items-center px-4 py-2 border rounded-md ${
                   currentPage === totalPages
-                    ? "bg-gray-700 text-gray-400 cursor-not-allowed border-gray-600"
-                    : "bg-gray-700 text-gray-200 hover:bg-gray-600 border-gray-600"
+                    ? "bg-gray-200 text-gray-800 cursor-not-allowed border-gray-600"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-600 border-gray-600"
                 } transition-colors`}
               >
                 Next
@@ -266,7 +266,7 @@ export default function DashboardProductsPage() {
             </div>
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-800">
                   Showing{" "}
                   <span className="font-medium">
                     {(currentPage - 1) * productsPerPage + 1}
@@ -294,8 +294,8 @@ export default function DashboardProductsPage() {
                     disabled={currentPage === 1}
                     className={`relative inline-flex items-center px-2 py-2 rounded-l-md border ${
                       currentPage === 1
-                        ? "bg-gray-700 text-gray-400 cursor-not-allowed border-gray-600"
-                        : "bg-gray-700 text-gray-300 hover:bg-gray-600 border-gray-600"
+                        ? "bg-gray-200 text-gray-800 cursor-not-allowed border-gray-600"
+                        : "bg-gray-200 text-gray-600 hover:bg-gray-300 border-gray-600"
                     } transition-colors`}
                   >
                     <span className="sr-only">Previous</span>
@@ -323,7 +323,7 @@ export default function DashboardProductsPage() {
                         className={`relative inline-flex items-center px-4 py-2 border ${
                           currentPage === pageNum
                             ? "bg-blue-800 border-blue-700 text-blue-100"
-                            : "bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600"
+                            : "bg-gray-200 border-gray-600 text-gray-800 hover:bg-gray-300"
                         } text-sm font-medium transition-colors`}
                       >
                         {pageNum}
@@ -340,8 +340,8 @@ export default function DashboardProductsPage() {
                     disabled={currentPage === totalPages}
                     className={`relative inline-flex items-center px-2 py-2 rounded-r-md border ${
                       currentPage === totalPages
-                        ? "bg-gray-700 text-gray-400 cursor-not-allowed border-gray-600"
-                        : "bg-gray-700 text-gray-300 hover:bg-gray-600 border-gray-600"
+                        ? "bg-gray-200 text-gray-800 cursor-not-allowed border-gray-600"
+                        : "bg-gray-200 text-gray-600 hover:bg-gray-300 border-gray-600"
                     } transition-colors`}
                   >
                     <span className="sr-only">Next</span>

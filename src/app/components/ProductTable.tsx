@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { IProductPostProps } from "@/types";
 
 interface ProductTableProps {
@@ -23,42 +24,42 @@ export default function ProductTable({
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-700">
-        <thead className="bg-gray-900">
+      <table className="min-w-full divide-y divide-gray-600">
+        <thead className="bg-gray-700">
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-semibold text-gray-200 uppercase tracking-wider"
             >
               ID
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-semibold text-gray-200 uppercase tracking-wider"
             >
               Product
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-semibold text-gray-200 uppercase tracking-wider"
             >
               Price
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-semibold text-gray-200 uppercase tracking-wider"
             >
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="bg-gray-800 divide-y divide-gray-700">
+        <tbody className="bg-gray-200 divide-y divide-gray-600">
           {products.map((product) => (
             <tr
               key={product.id}
-              className="hover:bg-gray-700 transition-colors"
+              className="bg-gray-200 transition-colors"
             >
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                 {product.id}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -77,7 +78,7 @@ export default function ProductTable({
                     />
                   </div>
                   <div className="ml-4">
-                    <div className="text-sm font-medium text-gray-100">
+                    <div className="text-sm font-medium text-gray-800">
                       {product.title}
                     </div>
                     <div className="text-sm text-gray-400 truncate max-w-xs">
@@ -86,13 +87,15 @@ export default function ProductTable({
                   </div>
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                 ${product.price?.toFixed(2) || "0.00"}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <button
                   onClick={() => onEdit(product)}
                   className="text-indigo-400 hover:text-indigo-300 mr-4 transition-colors"
+                  aria-label="Edit Product"
+                  
                 >
                   <span className="flex items-center">
                     <svg
@@ -115,6 +118,7 @@ export default function ProductTable({
                 <button
                   onClick={() => onDelete(product.id)}
                   className="text-red-400 hover:text-red-300 transition-colors"
+                  aria-label="Delete Product"
                 >
                   <span className="flex items-center">
                     <svg
