@@ -1,9 +1,28 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function ProfilePage() {
-  const {data: session} = useSession();
+  const {data: session, status} = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+      if (status === "authenticated" && session?.user?.role === "admin") {
+        router.replace("/dashboard");
+        return;
+      }
+    }, [session, status, router])
+  
+    // Show loading state while checking authentication
+    if (status === "loading") {
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      );
+    }
 
   return (
     <div className="my-20 bg-white p-4">

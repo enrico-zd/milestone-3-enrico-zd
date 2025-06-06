@@ -177,7 +177,7 @@ export default function DashboardProductsPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search products..."
-              className="flex-1 bg-gray-100 border border-gray-300 rounded-md shadow-sm py-2 pl-10 pr-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 sm:text-sm w-full"
+              className="flex-1 bg-gray-100 border border-gray-300 rounded-md shadow-sm py-2 pl-10 pr-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 sm:text-sm w-full"
             />
           </div>
           <button

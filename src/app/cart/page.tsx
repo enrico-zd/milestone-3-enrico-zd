@@ -5,13 +5,17 @@ import CartItemCard from "../components/CartItemCard";
 import Link from "next/link";
 
 export default function CartPage() {
-    const { items, totalItems } = useCart();
+    const { items, totalItems, clearCart } = useCart();
 
     // Calculate total price
     const totalPrice = items.reduce((total, item) => {
         return total + item.product.price * item.quantity;
     }, 0)
 
+    const handleCheckout = () => {
+        alert("Checkout Products");
+        clearCart(); // Clear cart after checkout
+    }
 
     return (
         <div className="h-screen flex justify-center items-center">
@@ -34,7 +38,7 @@ export default function CartPage() {
                                     ${totalPrice.toFixed(2)}
                                 </span>
                             </div>
-                            <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-10 text-2xl mt-2 rounded-xl">
+                            <button onClick={handleCheckout} className="bg-green-600 hover:bg-green-700 text-white py-3 px-10 text-2xl mt-2 rounded-xl">
                                 Checkout
                             </button>
                         </>
