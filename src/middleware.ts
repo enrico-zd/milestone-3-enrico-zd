@@ -27,7 +27,7 @@ export function middleware(request: NextRequest){
         return NextResponse.redirect(loginUrl);
     }
 
-    // Redirect already authenticated user away from login/register pages
+    // Redirect already authenticated user away from login pages
     if (
         isPublicPath &&
         isAuthenticated &&
@@ -48,5 +48,5 @@ export function middleware(request: NextRequest){
 }
 
 export const config = {
-    matcher: ["/cart/:path*", "/dashboard/:path*", "/profile/:path*"],
+    matcher: ["/login", "/cart/:path*", "/dashboard/:path*", "/profile/:path*"],
 }

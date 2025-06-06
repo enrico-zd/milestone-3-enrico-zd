@@ -42,7 +42,7 @@ describe("CategoryApi", () => {
 
             // Assertions
             expect(fetch).toHaveBeenCalledWith(
-                "https://api.escuelajs.co/api/v1/categories"
+                "https://api.escuelajs.co/api/v1/categories", {next: { revalidate: 60 } }
             );
             expect(result).toEqual(mockCategories);
             expect(result.length).toBe(2);

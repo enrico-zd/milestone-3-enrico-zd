@@ -1,7 +1,7 @@
 "use client";
 
 import { IProducts } from "@/types";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 // Define cart item type
 export type CartItem = {
@@ -15,6 +15,7 @@ type CartContextType = {
     addToCart: (product: IProducts) => void;
     removeFromCart: (productId: number) => void;
     totalItems: number;
+    clearCart: () => void;
 }
 
 // Create context with default values
@@ -23,6 +24,7 @@ const CartContext = createContext<CartContextType>({
     addToCart: () => {},
     removeFromCart: () => {},
     totalItems: 0,
+    clearCart: () => {}
 });
 
 // Custom hook for using the cart context
@@ -32,6 +34,19 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }: {children: ReactNode}) => {
     const [items, setItems] = useState<CartItem[]>([]);
 
+    // Initialize cart from local storage if available
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cartItems');
+        if (storedCart) {
+            setItems(JSON.parse(storedCart));
+        }
+    }, []);
+
+    // Save updated cart to local storage
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(items));
+    }, [items]);
+    
     // Calculate total items in cart
     const totalItems = items.reduce((total, item) => total + item.quantity, 0);
 
@@ -79,9 +94,15 @@ export const CartProvider = ({ children }: {children: ReactNode}) => {
         });
     };
 
+    // Clear the cart
+    const clearCart = () => {
+        setItems([]);
+        localStorage.removeItem('cartItems');
+    }
+
     return (
         <CartContext.Provider
-            value={{items, addToCart, removeFromCart, totalItems}}
+            value={{items, addToCart, removeFromCart, totalItems, clearCart}}
         >
             {children}
         </CartContext.Provider>
