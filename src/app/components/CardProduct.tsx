@@ -15,7 +15,7 @@ const CardProduct = ({images, title, slug, category, price}: ICardProductProps):
     }
 
     return (
-        <div onClick={handleClick} data-testid="product-card" className="h-[480px] w-[300px] shadow-lg rounded-md overflow-hidden relative cursor-pointer">
+        <div onClick={handleClick} data-testid="product-card" className="h-[480px] w-[300px] shadow-lg rounded-md overflow-hidden relative cursor-pointer dark:shadow-md/40 dark:shadow-white">
             {isLoading && (
                 <div className="absolute inset-0 bg-black opacity-50"
                 >

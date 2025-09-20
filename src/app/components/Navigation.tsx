@@ -13,7 +13,7 @@ export default function Navigation() {
 
     return (
         <header>
-            <nav className="flex justify-center items-center w-full bg-white top-0 py-4 shadow-sm text-lg fixed z-10">
+            <nav className="flex justify-center items-center w-full bg-white top-0 py-4 shadow-sm text-lg text-black fixed z-10">
                 <div className="flex flex-row justify-between items-center w-full h-full">
                     <Link className="z-10 ml-20" href="/">RevoShop</Link>
                     <div className="flex gap-4 items-center z-10">

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <div className="w-full h-[210px] shadow-[0_-3px_5px_-3px_rgba(0,0,0,0.2)] relative">
+        <div className="w-full h-[210px] shadow-[0_-3px_5px_-3px_rgba(0,0,0,0.2)] relative dark:shadow-md dark:shadow-white">
             <div className="flex flex-row justify-around">
                 <div className="w-[400px] mt-6">
                     <h2 className="text-xl font-semibold">RevoShop</h2>
